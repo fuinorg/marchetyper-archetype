@@ -1,0 +1,57 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+#set( $delim = '.,_-/' )
+#set( $empty = '' )
+#set( $StringUtils = $empty.class.forName('org.codehaus.plexus.util.StringUtils') )
+#set( $pkgPath = $StringUtils.replace($pkgName, ".", "/") )
+<marchetyper-config 
+    src-dir="../example"
+    dest-dir="../archetype"
+    binary-files=".*${symbol_escape}.(jar|gitignore|gitkeep|uml)"
+    text-files="(.*${symbol_escape}.(properties|md|java|yml|yaml|xml))|Dockerfile">
+
+    <variables>
+        <variable name="pkgPath" source="pkgName" transform="DOT_2_SLASH" />
+    </variables>
+
+    <archetype group-id="org.fuin.archetypes" artifact-id="xyz-archetype" version="0.1.0-SNAPSHOT">
+        <property name="groupId" default="com.example.archetypes" test="org.fuin.archetypes" />
+        <property name="artifactId" default="myapp-archetype" test="xyz-archetype" />
+        <property name="version" default="0.1.0-SNAPSHOT" test="0.1.0-SNAPSHOT" />
+        <property name="pkgName" default="com.example.archetypes.myapp" test="org.fuin.archetypes.xyz" />
+        <property name="appName" default="MyApp" test="Xyz" />
+    </archetype>
+     
+    <!-- Replacement definition for path elements -->
+    <path-mappings>
+        <mapping search="xyz-archetype" replace="__artifactId__" />
+        <mapping search="org/fuin/archetypes/xyz" replace="__pkgPath__" />
+        <mapping search="Xyz" replace="__appName__" />
+    </path-mappings>
+
+    <!-- Replacement definition for text files -->
+    <text-file-mappings>
+        <mapping search="&lt;groupId&gt;org.fuin.archetypes.xyz&lt;/groupId&gt;" replace="&lt;groupId&gt;${symbol_dollar}{groupId}&lt;/groupId&gt;" file="pom${symbol_escape}.xml" />
+        <mapping search="xyz-archetype" replace="${symbol_dollar}{artifactId}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
+        <mapping search="&lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;" replace="&lt;version&gt;${symbol_dollar}{version}&lt;/version&gt;" file="pom${symbol_escape}.xml" />
+        <mapping search="Xyz" replace="${symbol_dollar}{appName}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
+        <mapping search="org/fuin/archetypes/xyz" replace="${symbol_dollar}{pkgPath}" file=".*${symbol_escape}.md" />
+        <mapping search="org.fuin.archetypes.xyz" replace="${symbol_dollar}{pkgName}" file=".*${symbol_escape}.java" />
+        <mapping search="0.1.0-SNAPSHOT" replace="${symbol_dollar}{version}" file=".*${symbol_escape}.md" />
+    </text-file-mappings>
+
+    <!-- Directories and files that will always be copied (also if part of 'file-excludes') -->
+    <file-includes>
+        <filter file=".*${symbol_escape}.(gitignore|gitkeep)" />
+        <filter path=".*/${symbol_escape}.mvn/.*" />
+    </file-includes>
+
+    <!-- Directories and files that will not be copied -->
+    <file-excludes>
+        <filter path=".*/${symbol_escape}..*/.*"/>
+        <filter file="^${symbol_escape}..*" />
+        <filter file=".*${symbol_escape}.log" />
+    </file-excludes>
+
+</marchetyper-config>

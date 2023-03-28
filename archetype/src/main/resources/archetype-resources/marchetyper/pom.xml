@@ -1,0 +1,74 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+#set( $delim = '.,_-/' )
+#set( $empty = '' )
+#set( $StringUtils = $empty.class.forName('org.codehaus.plexus.util.StringUtils') )
+#set( $pkgPath = $StringUtils.replace($pkgName, ".", "/") )
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>${groupId}</groupId>
+	<artifactId>${artifactId}-marchetyper</artifactId>
+    <version>${version}</version>
+    <packaging>pom</packaging>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.fuin.marchetyper</groupId>
+                <artifactId>marchetyper-maven-plugin</artifactId>
+                <version>0.2.0</version>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <addDefaultExcludes>false</addDefaultExcludes>
+                            <outputDirectory>${symbol_dollar}{basedir}/../archetype</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${symbol_dollar}{basedir}/extra-resources</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>

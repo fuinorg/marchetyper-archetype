@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="org.fuin.archetypes.marchetyper-archetype">
+
+	<requiredProperties>
+		<requiredProperty key="groupId"><defaultValue>com.example.archetypes</defaultValue></requiredProperty>
+		<requiredProperty key="artifactId"><defaultValue>abc-archetype</defaultValue></requiredProperty>
+		<requiredProperty key="version"><defaultValue>0.1.0-SNAPSHOT</defaultValue></requiredProperty>
+		<requiredProperty key="pkgName"><defaultValue>com.example.archetypes.abc</defaultValue></requiredProperty>
+		<requiredProperty key="appName"><defaultValue>Abc</defaultValue></requiredProperty>
+	</requiredProperties>
+
+	<fileSets>	    
+		<fileSet filtered="true">
+			<directory></directory>
+			<includes>
+				<include>pom.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>example</directory>
+			<includes>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>archetype</directory>
+			<includes>
+				<include>pom.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>marchetyper</directory>
+			<includes>
+				<include>pom.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>marchetyper</directory>
+			<includes>
+				<include>marchetyper-config.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>marchetyper/extra-resources</directory>
+			<includes>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>test</directory>
+			<includes>
+				<include>pom.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory>test/src/test/java/__pkgPath__/test</directory>
+			<includes>
+				<include>ArchetypeGenerationTest.java</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true">
+			<directory></directory>
+			<includes>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+</archetype-descriptor>

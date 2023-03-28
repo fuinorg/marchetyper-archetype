@@ -1,0 +1,50 @@
+<marchetyper-config 
+    src-dir="../example"
+    dest-dir="../archetype"
+    binary-files=".*\.(jar|gitignore|gitkeep|uml)"
+    text-files="(.*\.(properties|md|java|yml|yaml|xml))|Dockerfile">
+
+    <variables>
+        <variable name="pkgPath" source="pkgName" transform="DOT_2_SLASH" />
+    </variables>
+
+    <archetype group-id="org.fuin.archetypes" artifact-id="xyz-archetype" version="0.1.0-SNAPSHOT">
+        <property name="groupId" default="com.example.archetypes" test="org.fuin.archetypes" />
+        <property name="artifactId" default="myapp-archetype" test="xyz-archetype" />
+        <property name="version" default="0.1.0-SNAPSHOT" test="0.1.0-SNAPSHOT" />
+        <property name="pkgName" default="com.example.archetypes.myapp" test="org.fuin.archetypes.xyz" />
+        <property name="appName" default="MyApp" test="Xyz" />
+    </archetype>
+     
+    <!-- Replacement definition for path elements -->
+    <path-mappings>
+        <mapping search="xyz-archetype" replace="__artifactId__" />
+        <mapping search="org/fuin/archetypes/xyz" replace="__pkgPath__" />
+        <mapping search="Xyz" replace="__appName__" />
+    </path-mappings>
+
+    <!-- Replacement definition for text files -->
+    <text-file-mappings>
+        <mapping search="&lt;groupId&gt;org.fuin.archetypes.xyz&lt;/groupId&gt;" replace="&lt;groupId&gt;${groupId}&lt;/groupId&gt;" file="pom\.xml" />
+        <mapping search="xyz-archetype" replace="${artifactId}" file="pom\.xml|.*\.md" />
+        <mapping search="&lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;" replace="&lt;version&gt;${version}&lt;/version&gt;" file="pom\.xml" />
+        <mapping search="Xyz" replace="${appName}" file="pom\.xml|.*\.md" />
+        <mapping search="org/fuin/archetypes/xyz" replace="${pkgPath}" file=".*\.md" />
+        <mapping search="org.fuin.archetypes.xyz" replace="${pkgName}" file=".*\.java" />
+        <mapping search="0.1.0-SNAPSHOT" replace="${version}" file=".*\.md" />
+    </text-file-mappings>
+
+    <!-- Directories and files that will always be copied (also if part of 'file-excludes') -->
+    <file-includes>
+        <filter file=".*\.(gitignore|gitkeep)" />
+        <filter path=".*/\.mvn/.*" />
+    </file-includes>
+
+    <!-- Directories and files that will not be copied -->
+    <file-excludes>
+        <filter path=".*/\..*/.*"/>
+        <filter file="^\..*" />
+        <filter file=".*\.log" />
+    </file-excludes>
+
+</marchetyper-config>
