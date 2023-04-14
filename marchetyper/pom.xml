@@ -5,7 +5,7 @@
 
     <groupId>org.fuin.marchetyper</groupId>
 	<artifactId>marchetyper-archetype-marchetyper</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.2.1</version>
     <packaging>pom</packaging>
 
     <build>
@@ -15,7 +15,7 @@
             <plugin>
                 <groupId>org.fuin.marchetyper</groupId>
                 <artifactId>marchetyper-maven-plugin</artifactId>
-                <version>0.4.0</version>
+                <version>0.4.1</version>
                 <executions>
                     <execution>
                         <id>generate</id>
