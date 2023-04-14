@@ -9,7 +9,7 @@
         <variable name="pkgPath" source="pkgName" transform="DOT_2_SLASH" />
     </variables>
 
-    <archetype group-id="org.fuin.archetypes" artifact-id="marchetyper-archetype" version="0.2.1">
+    <archetype group-id="org.fuin.archetypes" artifact-id="marchetyper-archetype" version="0.3.0-SNAPSHOT">
         <property name="groupId" default="com.example.archetypes" test="org.fuin.archetypes" />
         <property name="artifactId" default="abc-archetype" test="xyz-archetype" />
         <property name="version" default="0.1.0-SNAPSHOT" test="0.1.0-SNAPSHOT" />
