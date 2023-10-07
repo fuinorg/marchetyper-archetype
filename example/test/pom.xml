@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.fuin.marchetyper</groupId>
             <artifactId>marchetyper-core</artifactId>
-            <version>0.4.0</version>
+            <version>0.6.0</version>
         </dependency>
 
         <dependency>

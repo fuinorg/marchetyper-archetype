@@ -29,9 +29,10 @@ public class ArchetypeGenerationTest {
     public void testGenerate() throws VerificationException, IOException {
 
         // PREPARE
-        final File configFile = new File("../marchetyper/marchetyper-config.xml");
+        final File baseDir = new File("..");
+        final File configFile = new File(baseDir, "marchetyper/marchetyper-config.xml");
         final Config config = ConfigImpl.load(configFile);
-        final File srcDir = new File("../example");
+        final File srcDir = new File(baseDir, "example");
         final File tmpDir = new File("target/" + this.getClass().getSimpleName());
         if (tmpDir.exists()) {
             FileUtils.deleteDirectory(tmpDir);
@@ -43,7 +44,8 @@ public class ArchetypeGenerationTest {
 
         final List<String> args = new ArrayList<>();
         args.add("archetype:generate");
-        args.addAll(config.getArchetype().toArchetypeGenerateArgs());
+        args.add("-DarchetypeCatalog=local");
+        args.addAll(config.getArchetype().toArchetypeGenerateArgs(baseDir));
         generateVerifier.addCliArguments(args.toArray(new String[args.size()]));
 
         // TEST

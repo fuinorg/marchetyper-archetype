@@ -29,7 +29,7 @@ The following parameters may be a good choice for creating the new archetype:
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=marchetyper-archetype \
-     -DarchetypeVersion=0.2.1 \
+     -DarchetypeVersion=0.3.0-SNAPSHOT \
      -DgroupId="com.mycompany.archetypes" \
      -DartifactId="java-fx-archetype" \
      -Dversion="0.1.0-SNAPSHOT" \
@@ -41,7 +41,7 @@ mvn archetype:generate \
 ### Copy your example into the new project
 The new project structure looks like this:
 
-- **archetype** - The code for the generated archetype will be stored in this directory
+- **archetype** - The code for the generated archetype will be stored in this directory. CAUTION: Content in this directory will be overwritten during every build!
 - **example** <--- Copy your example project into this directory (The 'pom.xml' should **not** reference the parent POM - The project is completely independent of the other modules)
 - **marchetyper** - Contains the plugin and configuration that transforms the `example` folder into the `archetype` directory
 - **test** - Contains code to test the final archetype by generating a test project
