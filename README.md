@@ -29,7 +29,7 @@ The following parameters may be a good choice for creating the new archetype:
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=marchetyper-archetype \
-     -DarchetypeVersion=0.3.0 \
+     -DarchetypeVersion=0.4.0-SNAPSHOT \
      -DgroupId="com.mycompany.archetypes" \
      -DartifactId="java-fx-archetype" \
      -Dversion="0.1.0-SNAPSHOT" \
