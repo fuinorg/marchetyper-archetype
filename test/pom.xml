@@ -5,7 +5,7 @@
 
     <groupId>org.fuin.marchetyper</groupId>
 	<artifactId>marchetyper-archetype-test</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.0</version>
 
     <properties>
         <toolchain.jdk.version>OpenJDK 11 64-Bit</toolchain.jdk.version>
