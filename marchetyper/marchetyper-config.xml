@@ -1,8 +1,8 @@
 <marchetyper-config 
     src-dir="../example"
     dest-dir="../archetype"
-    binary-files=".*\.(jar|gitignore|gitkeep|uml)"
-    text-files="(.*\.(properties|md|java|yml|yaml|xml))|Dockerfile"
+    binary-files=".*\.(jar|gitignore|gitkeep|uml)|archetype-post-generate\.groovy"
+    text-files="(.*\.(properties|md|java|yml|yaml|xml|txt))|Dockerfile"
     custom-pom-file="custom-pom.xml">
 
     <variables>
@@ -27,12 +27,14 @@
     <!-- Replacement definition for text files -->
     <text-file-mappings>
         <mapping search="&lt;groupId&gt;org.fuin.archetypes&lt;/groupId&gt;" replace="&lt;groupId&gt;${groupId}&lt;/groupId&gt;" file="pom\.xml" />
-        <mapping search="xyz-archetype" replace="${artifactId}" file="pom\.xml|.*\.md" />
+        <mapping search="xyz-archetype" replace="${artifactId}" file="pom\.xml|.*\.md|marchetyper-config\.xml" />
         <mapping search="&lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;" replace="&lt;version&gt;${version}&lt;/version&gt;" file="pom\.xml" />
-        <mapping search="Xyz" replace="${appName}" file="pom\.xml|.*\.md" />
-        <mapping search="org/fuin/archetypes/xyz" replace="${pkgPath}" file=".*\.md" />
-        <mapping search="org.fuin.archetypes.xyz" replace="${pkgName}" file=".*\.java" />
-        <mapping search="0.1.0-SNAPSHOT" replace="${version}" file=".*\.md" />
+        <mapping search="org/fuin/archetypes/xyz" replace="${pkgPath}" file=".*\.md|marchetyper-config\.xml" />
+        <mapping search="org.fuin.archetypes.xyz" replace="${pkgName}" file=".*\.java|marchetyper-config\.xml" />
+        <mapping search="org.fuin.archetypes" replace="${groupId}" file=".*\.md|marchetyper-config\.xml" />
+        <mapping search="Xyz" replace="${appName}" file="pom\.xml|.*\.md|marchetyper-config\.xml" />
+        <mapping search="test=&quot;0.1.0-SNAPSHOT&quot;" replace="test=&quot;${version}&quot;" file="marchetyper-config\.xml" />
+        <mapping search="archetypeVersion=0.1.0-SNAPSHOT" replace="archetypeVersion=${version}" file=".*\.md" />
     </text-file-mappings>
 
     <!-- Directories and files that will always be copied (also if part of 'file-excludes') -->
