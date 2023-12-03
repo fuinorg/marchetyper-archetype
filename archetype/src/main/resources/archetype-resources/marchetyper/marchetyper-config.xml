@@ -8,36 +8,38 @@
 <marchetyper-config 
     src-dir="../example"
     dest-dir="../archetype"
-    binary-files=".*${symbol_escape}.(jar|gitignore|gitkeep|uml)"
-    text-files="(.*${symbol_escape}.(properties|md|java|yml|yaml|xml))|Dockerfile">
+    binary-files=".*${symbol_escape}.(jar|gitignore|gitkeep|uml)|archetype-post-generate${symbol_escape}.groovy"
+    text-files="(.*${symbol_escape}.(properties|md|java|yml|yaml|xml|txt))|Dockerfile"    
+    post-generate-file="extra-resources/archetype-post-generate.groovy"
+    mask-dot-file="true">
 
     <variables>
         <variable name="pkgPath" source="pkgName" transform="DOT_2_SLASH" />
     </variables>
 
-    <archetype group-id="org.fuin.archetypes" artifact-id="xyz-archetype" version-pom-file="pom.xml">
-        <property name="groupId" default="com.example.archetypes" test="org.fuin.archetypes" />
-        <property name="artifactId" default="myapp-archetype" test="xyz-archetype" />
-        <property name="version" default="0.1.0-SNAPSHOT" test="0.1.0-SNAPSHOT" />
-        <property name="pkgName" default="com.example.archetypes.myapp" test="org.fuin.archetypes.xyz" />
-        <property name="appName" default="MyApp" test="Xyz" />
+    <archetype group-id="${groupId}" artifact-id="${artifactId}" version-pom-file="pom.xml">
+        <property name="groupId" default="com.example.archetypes" test="${groupId}" />
+        <property name="artifactId" default="myapp-archetype" test="${artifactId}" />
+        <property name="version" default="0.1.0-SNAPSHOT" test="${version}" />
+        <property name="pkgName" default="com.example.archetypes.myapp" test="${pkgName}" />
+        <property name="appName" default="MyApp" test="${appName}" />
     </archetype>
      
     <!-- Replacement definition for path elements -->
     <path-mappings>
-        <mapping search="xyz-archetype" replace="__artifactId__" />
-        <mapping search="org/fuin/archetypes/xyz" replace="__pkgPath__" />
-        <mapping search="Xyz" replace="__appName__" />
+        <mapping search="${artifactId}" replace="__artifactId__" />
+        <mapping search="${pkgPath}" replace="__pkgPath__" />
+        <mapping search="${appName}" replace="__appName__" />
     </path-mappings>
 
     <!-- Replacement definition for text files -->
     <text-file-mappings>
-        <mapping search="&lt;groupId&gt;org.fuin.archetypes.xyz&lt;/groupId&gt;" replace="&lt;groupId&gt;${symbol_dollar}{groupId}&lt;/groupId&gt;" file="pom${symbol_escape}.xml" />
-        <mapping search="xyz-archetype" replace="${symbol_dollar}{artifactId}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
+        <mapping search="&lt;groupId&gt;${pkgName}&lt;/groupId&gt;" replace="&lt;groupId&gt;${symbol_dollar}{groupId}&lt;/groupId&gt;" file="pom${symbol_escape}.xml" />
+        <mapping search="${artifactId}" replace="${symbol_dollar}{artifactId}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
         <mapping search="&lt;version&gt;0.1.0-SNAPSHOT&lt;/version&gt;" replace="&lt;version&gt;${symbol_dollar}{version}&lt;/version&gt;" file="pom${symbol_escape}.xml" />
-        <mapping search="Xyz" replace="${symbol_dollar}{appName}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
-        <mapping search="org/fuin/archetypes/xyz" replace="${symbol_dollar}{pkgPath}" file=".*${symbol_escape}.md" />
-        <mapping search="org.fuin.archetypes.xyz" replace="${symbol_dollar}{pkgName}" file=".*${symbol_escape}.java" />
+        <mapping search="${appName}" replace="${symbol_dollar}{appName}" file="pom${symbol_escape}.xml|.*${symbol_escape}.md" />
+        <mapping search="${pkgPath}" replace="${symbol_dollar}{pkgPath}" file=".*${symbol_escape}.md" />
+        <mapping search="${pkgName}" replace="${symbol_dollar}{pkgName}" file=".*${symbol_escape}.java" />
         <mapping search="0.1.0-SNAPSHOT" replace="${symbol_dollar}{version}" file=".*${symbol_escape}.md" />
     </text-file-mappings>
 

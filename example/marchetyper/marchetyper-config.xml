@@ -1,8 +1,10 @@
 <marchetyper-config 
     src-dir="../example"
     dest-dir="../archetype"
-    binary-files=".*\.(jar|gitignore|gitkeep|uml)"
-    text-files="(.*\.(properties|md|java|yml|yaml|xml))|Dockerfile">
+    binary-files=".*\.(jar|gitignore|gitkeep|uml)|archetype-post-generate\.groovy"
+    text-files="(.*\.(properties|md|java|yml|yaml|xml|txt))|Dockerfile"    
+    post-generate-file="extra-resources/archetype-post-generate.groovy"
+    mask-dot-file="true">
 
     <variables>
         <variable name="pkgPath" source="pkgName" transform="DOT_2_SLASH" />

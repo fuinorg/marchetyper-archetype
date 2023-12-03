@@ -64,6 +64,12 @@
 				<include>README.md</include>
 			</includes>
 		</fileSet>
+		<fileSet filtered="false">
+			<directory>marchetyper/extra-resources</directory>
+			<includes>
+				<include>archetype-post-generate.groovy</include>
+			</includes>
+		</fileSet>
 	</fileSets>
 
 </archetype-descriptor>
