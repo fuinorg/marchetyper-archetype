@@ -8,7 +8,7 @@ Archetype that creates a new Maven project with the suggested directory structur
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=marchetyper-archetype \
-     -DarchetypeVersion=0.3.1-SNAPSHOT
+     -DarchetypeVersion=0.3.1
 ```
 
 ### All Parameters
@@ -16,7 +16,7 @@ mvn archetype:generate \
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=marchetyper-archetype \
-     -DarchetypeVersion=0.3.1-SNAPSHOT \
+     -DarchetypeVersion=0.3.1 \
      -DgroupId="com.example.archetypes" \
      -DartifactId="abc-archetype" \
      -Dversion="0.1.0-SNAPSHOT" \
@@ -40,7 +40,7 @@ In case you're developing a new version of the Archetype and want to build and t
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=marchetyper-archetype \
-     -DarchetypeVersion=0.3.1-SNAPSHOT \
+     -DarchetypeVersion=0.3.1 \
      ...
      -DarchetypeCatalog=local
 ```
